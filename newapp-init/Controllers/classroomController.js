@@ -1,12 +1,18 @@
-const express=require('express')
-var router=express.Router()
-const classroomService= require ('../Services/classroomService') //import lel module kemel 
-const {create,update,deleteC,read}= require ('../Services/classroomService')//import lel hajet specifique kahaw  
-const validate = require('../middleware/classroomValidation')
+const express = require('express');
+const router = express.Router();
 
-router.get('/list',classroomService.read)// shiha 
-router.post('/create', validate, create)
+const classroomService = require('../Services/classroomService');
+const validate = require('../middleware/classroomValidation');
+
+// Les handlers individuels si tu veux les extraire :
+const { create, update, deleteC } = classroomService;
+
+router.get('/list', classroomService.read);
+router.post('/create', validate, create);
 router.put('/:id', validate, update);
-router.delete('/:id', classroomService.deleteC)
+router.delete('/:id', deleteC);
+router.get('/floor-range', classroomService.searchByFloor);
+router.get('/capacity-stats', classroomService.capacityStats);
+router.get('/view', classroomService.renderList);
 
-module.exports= router
+module.exports = router;

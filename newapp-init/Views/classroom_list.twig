@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Classrooms List</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Classrooms</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Floor</th>
+      <th>Capacity</th>
+      <th>Date</th>
+    </tr>
+    {% for c in classrooms %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{{ c.floor }}</td>
+      <td>{{ c.capacity }}</td>
+      <td>{{ c.date | date("Y-m-d") }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
